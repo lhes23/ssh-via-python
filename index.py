@@ -15,7 +15,6 @@ def connectSSH(host):
         )
         print(stdout.readlines())
         c.close()
-
     except:
         print("Connection Failed!!!")
 
