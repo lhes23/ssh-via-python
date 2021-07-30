@@ -7,7 +7,6 @@ def connectSSH(host):
         cert = paramiko.RSAKey.from_private_key_file(config.keyfile)
         c = paramiko.SSHClient()
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        print("connecting...")
         c.connect(hostname=host, username=config.username, pkey=cert)
         print("connected!!!")
         stdin, stdout, stderr = c.exec_command(
@@ -15,6 +14,7 @@ def connectSSH(host):
         )
         print(stdout.readlines())
         c.close()
+        print("Successfully Updated")
     except:
         print("Connection Failed!!!")
 
