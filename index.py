@@ -28,7 +28,7 @@ def installUpdate(loc,item):
     file = filename.split(".zip")
     msg = "Install/Update " + item + " - " + file[0]
     
-    os.system("cd " + base_dir + ";git pull;cp ~/downloads/"+ filename + " " + base_dir + "" + loc + "/" + filename + ";cd " + base_dir + "" + loc + "/;unzip -o " + filename + ";rm " + filename + ";cd " + base_dir + ":git commit -m '" + msg + "';git push origin live")
+    os.system("cd " + base_dir + ";git pull;cp ~/downloads/"+ filename + " " + base_dir + "" + loc + "/" + filename + ";cd " + base_dir + "" + loc + "/;unzip -o " + filename + ";rm " + filename + ";cd " + base_dir + ";git commit -m '" + msg + "';git push origin live")
     
 
 process = input("[0]Plugin or [1]Theme?")
@@ -36,10 +36,10 @@ process = input("[0]Plugin or [1]Theme?")
 if process == "0":
     loc = "/wp-content/plugins"
     installUpdate(loc, "plugin")
-    # updateAwsServers()
+    updateAwsServers()
 elif process == "1":
     loc = "/wp-content/themes"
     installUpdate(loc, "theme")
-    # updateAwsServers()
+    updateAwsServers()
 else:
     print("Wrong Answer!")
