@@ -28,7 +28,7 @@ def installUpdate(loc,item):
     file = filename.split(".zip")
     
     os.system("cd " + base_dir + ";git pull;cp ~/downloads/"+ filename + " " + base_dir + "" + loc + "/" + filename + ";cd " + base_dir + "" + loc + "/;unzip -o " + filename + ";rm " + filename)
-    os.system("cd " + base_dir + ";git commit -a -m 'Install/Update " + item + " : "+file[0]+"';git push origin live")
+    os.system("cd " + base_dir + ";git commit -a -m 'Install/Update " + item + " : "+file[0]+"';git push")
     
 def startInterface():
     process = input("[0]Plugin or [1]Theme?")
@@ -44,5 +44,4 @@ def startInterface():
     else:
         print("Wrong Answer!")
 
-#startInterface()
-updateAwsServers()
+startInterface()
