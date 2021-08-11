@@ -44,5 +44,5 @@ def startInterface():
     else:
         print("Wrong Answer!")
 
-#startInterface()
-updateAwsServers()
+startInterface()
+#updateAwsServers()
