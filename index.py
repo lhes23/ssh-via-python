@@ -35,9 +35,12 @@ def installUpdate(loc,item):
     base_dir = "~/Documents/Github/ippei"
     file = filename.split(".zip")
     
-    os.system("cd " + base_dir + ";git pull;cp ~/downloads/"+ filename + " " + base_dir + "" + loc + "/" + filename + ";cd " + base_dir + "" + loc + "/;unzip -o " + filename + ";rm " + filename)
-    os.system("cd " + base_dir + ";git commit -a -m 'Install/Update " + item + " : "+file[0]+"';git push")
-    
+    os.system(f"cd {base_dir};git pull;cp ~/downloads/{filename} {base_dir}{loc}/{filename};cd {base_dir}{loc}/;unzip -o {filename};rm {filename}")
+    os.system(f"cd {base_dir};git commit -a -m 'Install/Update {item} : {file[0]}';git push")
+
+def showMessage(item):
+    messagebox.showinfo("Plugin/Theme Updater",f" {item} - {filename_txt.get()} has been successfully updated!")
+
 def startInterface():
     # process = input("[0]Plugin or [1]Theme?")
     process = selected.get()
@@ -45,12 +48,12 @@ def startInterface():
         loc = "/wp-content/plugins"
         installUpdate(loc, "plugin")
         updateAwsServers()
-        messagebox.showinfo('Plugin/Theme Updater','Plugin - '+ filename_txt.get() +' has been successfully updated!')
+        showMessage("Plugin")
     elif process == 1:
         loc = "/wp-content/themes"
         installUpdate(loc, "theme")
         updateAwsServers()
-        messagebox.showinfo('Plugin/Theme Updater','Theme - '+ filename_txt.get() +' has been successfully updated!')
+        showMessage("Theme")
     else:
         print("Wrong Answer!")
 
@@ -72,7 +75,7 @@ def next_step():
 
 # GUI
 window = Tk()
-window.geometry('350x200')
+window.geometry('400x200')
 window.title("Plugin/Theme Updater/Installer")
 window.eval('tk::PlaceWindow . center')
 
