@@ -39,7 +39,7 @@ def installUpdate(loc,item):
     os.system(f"cd {base_dir};git commit -a -m 'Install/Update {item} : {file[0]}';git push")
 
 def showMessage(item):
-    messagebox.showinfo("Plugin/Theme Updater",f" {item} - {filename_txt.get()} has been successfully updated!")
+    messagebox.showinfo("Plugin/Theme Updater",f"{item} - {filename_txt.get()} has been successfully updated!")
 
 def startInterface():
     # process = input("[0]Plugin or [1]Theme?")
@@ -69,7 +69,7 @@ def next_step():
         startInterface()
     else:
         # the mandatory field is empty
-        messagebox.showinfo('Plugin/Theme Updater','Filename must not be empty!')
+        messagebox.showinfo("Plugin/Theme Updater","Filename must not be empty!")
         filename_txt.focus_set()
 
 
