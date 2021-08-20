@@ -60,6 +60,15 @@ def startInterface():
 #startInterface()
 #updateAwsServers()
 
+def next_step():
+    if filename_txt.get():
+        # the user entered data in the mandatory entry: proceed to next step
+        startInterface()
+    else:
+        # the mandatory field is empty
+        messagebox.showinfo('Plugin/Theme Updater','Filename must not be empty!')
+        filename_txt.focus_set()
+
 
 # GUI
 window = Tk()
@@ -67,17 +76,17 @@ window.geometry('350x200')
 window.title("Plugin/Theme Updater/Installer")
 window.eval('tk::PlaceWindow . center')
 
-filename_lbl = Label(window,text="File Name").grid(column=1,row=2)
-filename_txt = Entry(window,width=15)
-filename_txt.grid(column=2,row=2)
-filename_txt.focus()
-
 selected = IntVar()
 
-plugin_rdBtn = Radiobutton(window,text='Plugin', value=0, variable=selected).grid(column=1, row=1)
+thpl_lbl = Label(window, text="What to install/update?").grid(column=1,row=2,pady=20,padx=20)
+plugin_rdBtn = Radiobutton(window,text='Plugin', value=0, variable=selected).grid(column=2, row=2)
+theme_rdBtn = Radiobutton(window,text='Theme', value=1, variable=selected).grid(column=3, row=2)
 
-theme_rdBtn = Radiobutton(window,text='Theme', value=1, variable=selected).grid(column=2, row=1)
+filename_lbl = Label(window,text="File Name").grid(column=1,row=3)
+filename_txt = Entry(window,width=20)
+filename_txt.grid(column=2,row=3, columnspan=2)
+filename_txt.focus()
 
-submit_btn = tk.Button(window, text="Submit",command=startInterface,height=2,width=20).grid(column=2, row=3)
+submit_btn = tk.Button(window, text="Submit",command=next_step,height=2,width=20).grid(column=1,columnspan=3, row=4,pady=10)
 
 window.mainloop()
