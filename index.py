@@ -69,7 +69,7 @@ def next_step():
         startInterface()
     else:
         # the mandatory field is empty
-        messagebox.showinfo("Plugin/Theme Updater","Filename must not be empty!")
+        messagebox.showinfo(f"{config.app_name}","Filename must not be empty!")
         filename_txt.focus_set()
 
 def update_aws():
@@ -78,12 +78,12 @@ def update_aws():
 # GUI
 window = Tk()
 window.geometry('400x200')
-window.title("Plugin/Theme Updater/Installer")
+window.title(config.app_name)
 window.eval('tk::PlaceWindow . center')
 
-selected = IntVar()
 
 thpl_lbl = Label(window, text="What to install/update?").grid(column=1,row=2,pady=20,padx=20)
+selected = IntVar()
 plugin_rdBtn = Radiobutton(window,text='Plugin', value=0, variable=selected).grid(column=2, row=2)
 theme_rdBtn = Radiobutton(window,text='Theme', value=1, variable=selected).grid(column=3, row=2)
 
