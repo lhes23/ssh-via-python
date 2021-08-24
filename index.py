@@ -92,6 +92,6 @@ filename_txt = Entry(window,width=20)
 filename_txt.grid(column=2,row=3, columnspan=2)
 filename_txt.focus()
 
-submit_btn = tk.Button(window, text="Submit",command=next_step,height=2,width=20).grid(column=1,columnspan=3, row=4,pady=10)
+submit_btn = tk.Button(window, text="Update plugin/theme",command=next_step,height=2,width=20).grid(column=1,columnspan=3, row=4,pady=10)
 update_server_btn = tk.Button(window, text="Update AWS Server only", command=update_aws,height=2,width=20).grid(column=1,row=5,columnspan=3)
 window.mainloop()
