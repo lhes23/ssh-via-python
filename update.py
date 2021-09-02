@@ -40,7 +40,7 @@ def installUpdate(loc,item):
     os.system(f"cd {base_dir};git commit -a -m 'Install/Update {item} : {file[0]}';git push")
 
 def showMessage(item):
-    messagebox.showinfo("Plugin/Theme Updater",f"{item} - {filename_txt.get()} has been successfully updated!")
+    messagebox.showinfo(config.app_name,f"{item} - {filename_txt.get()} has been successfully updated!")
 
 def startInterface():
     # process = input("[0]Plugin or [1]Theme?")
@@ -77,6 +77,7 @@ def next_step():
 
 def update_aws():
     updateAwsServers()
+    messagebox.showinfo(config.app_name,"Servers has been updated!")
 
 # GUI
 window = Tk()
