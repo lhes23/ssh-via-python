@@ -32,10 +32,11 @@ def updateAwsServers():
 def installUpdate(loc,item):
     # filename = input("Name of the file?")
     filename = filename_txt.get()
-    base_dir = "~/Documents/Github/ippei"
+    base_dir = config.local_base_dir
     file = filename.split(".zip")
+    downloads_folder = config.local_downloads_folder
     
-    os.system(f"cd {base_dir};git pull;cp ~/downloads/{filename} {base_dir}{loc}/{filename};cd {base_dir}{loc}/;unzip -o {filename};rm {filename}")
+    os.system(f"cd {base_dir};git pull;cp {downloads_folder}/{filename} {base_dir}{loc}/{filename};cd {base_dir}{loc}/;unzip -o {filename};rm {filename}")
     os.system(f"cd {base_dir};git commit -a -m 'Install/Update {item} : {file[0]}';git push")
 
 def showMessage(item):
