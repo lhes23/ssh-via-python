@@ -17,7 +17,7 @@ def connectSSH(host):
         c.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         c.connect(hostname=host, username=config.username, pkey=cert)
         print("connected!!!")
-        stdin, stdout, stderr = c.exec_command("cd /var/www/hosts/ippei.com/httpdocs;git pull origin live")
+        stdin, stdout, stderr = c.exec_command(f"cd {config.ssh_folder_location};git pull origin live")
         print(stdout.readlines())
         c.close()
         print("Successfully Updated")
