@@ -49,11 +49,13 @@ def startInterface():
         installUpdate(loc, "plugin")
         updateAwsServers()
         showMessage("Plugin")
+        filename_txt.delete(0,END)
     elif process == 1:
         loc = "/wp-content/themes"
         installUpdate(loc, "theme")
         updateAwsServers()
         showMessage("Theme")
+        filename_txt.delete(0,END)
     else:
         print("Wrong Answer!")
 
