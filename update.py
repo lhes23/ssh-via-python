@@ -72,7 +72,7 @@ def next_step():
         startInterface()
     else:
         # the mandatory field is empty
-        messagebox.showinfo(f"{config.app_name}","Filename must not be empty!")
+        messagebox.showinfo(config.app_name,"Filename must not be empty!")
         filename_txt.focus_set()
 
 def update_aws():
