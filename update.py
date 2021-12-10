@@ -45,7 +45,7 @@ def installUpdate(loc, item):
         f"cd {base_dir};git pull;cp {downloads_folder}/{filename} {base_dir}{loc}/{filename};cd {base_dir}{loc}/;unzip -o {filename};rm {filename}"
     )
     os.system(
-        f"cd {base_dir};git commit -a -m 'Install/Update {item} : {file[0]}';git push"
+        f"cd {base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
     )
 
 
