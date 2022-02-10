@@ -40,10 +40,10 @@ def installUpdate(loc, item):
     filename = filename_txt.get()
     # base_dir = config.local_base_dir
     file = filename.split(".zip")
-    downloads_folder = config.local_downloads_folder
+    # downloads_folder = config.local_downloads_folder
 
     os.system(
-        f"cd {config.local_base_dir};git pull;cp {downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+        f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
     )
     os.system(
         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
@@ -127,3 +127,4 @@ update_server_btn = tk.Button(
     window, text="Update AWS Server only", command=update_aws, height=2, width=20
 ).grid(column=1, row=5, columnspan=3)
 window.mainloop()
+
