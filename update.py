@@ -102,7 +102,7 @@ def update_aws():
 window = Tk()
 window.geometry("400x200")
 window.title(config.app_name)
-window.eval("tk::PlaceWindow.center")
+window.eval("tk::PlaceWindow . center")
 
 
 thpl_lbl = Label(window, text="What to install/update?").grid(
