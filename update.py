@@ -40,6 +40,7 @@ def installUpdate(loc, item):
     filename = filename_txt.get()
     # base_dir = config.local_base_dir
     file = filename.split(".zip")
+    
     # downloads_folder = config.local_downloads_folder
 
     os.system(
@@ -101,7 +102,7 @@ def update_aws():
 window = Tk()
 window.geometry("400x200")
 window.title(config.app_name)
-window.eval("tk::PlaceWindow . center")
+window.eval("tk::PlaceWindow.center")
 
 
 thpl_lbl = Label(window, text="What to install/update?").grid(
