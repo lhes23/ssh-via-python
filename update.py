@@ -1,7 +1,7 @@
 import config
 import paramiko
 import os
-
+import PySimpleGUI as sg
 
 from tkinter import *
 import tkinter as tk
@@ -95,33 +95,53 @@ def update_aws():
     messagebox.showinfo(config.app_name, "Servers has been updated!")
 
 
-# GUI
-window = Tk()
-window.geometry("400x200")
-window.title(config.app_name)
-window.eval("tk::PlaceWindow . center")
+# # GUI
+# window = Tk()
+# window.geometry("400x200")
+# window.title(config.app_name)
+# window.eval("tk::PlaceWindow . center")
 
 
-thpl_lbl = Label(window, text="What to install/update?").grid(
-    column=1, row=2, pady=20, padx=20
-)
-selected = IntVar()
-plugin_rdBtn = Radiobutton(window, text="Plugin", value=0, variable=selected).grid(
-    column=2, row=2
-)
-theme_rdBtn = Radiobutton(window, text="Theme", value=1, variable=selected).grid(
-    column=3, row=2
-)
+# thpl_lbl = Label(window, text="What to install/update?").grid(
+#     column=1, row=2, pady=20, padx=20
+# )
+# selected = IntVar()
+# plugin_rdBtn = Radiobutton(window, text="Plugin", value=0, variable=selected).grid(
+#     column=2, row=2
+# )
+# theme_rdBtn = Radiobutton(window, text="Theme", value=1, variable=selected).grid(
+#     column=3, row=2
+# )
 
-filename_lbl = Label(window, text="File Name").grid(column=1, row=3)
-filename_txt = Entry(window, width=20)
-filename_txt.grid(column=2, row=3, columnspan=2)
-filename_txt.focus()
+# filename_lbl = Label(window, text="File Name").grid(column=1, row=3)
+# filename_txt = Entry(window, width=20)
+# filename_txt.grid(column=2, row=3, columnspan=2)
+# filename_txt.focus()
 
-submit_btn = tk.Button(
-    window, text="Update plugin/theme", command=next_step, height=2, width=20
-).grid(column=1, columnspan=3, row=4, pady=10)
-update_server_btn = tk.Button(
-    window, text="Update AWS Server only", command=update_aws, height=2, width=20
-).grid(column=1, row=5, columnspan=3)
-window.mainloop()
+# submit_btn = tk.Button(
+#     window, text="Update plugin/theme", command=next_step, height=2, width=20
+# ).grid(column=1, columnspan=3, row=4, pady=10)
+# update_server_btn = tk.Button(
+#     window, text="Update AWS Server only", command=update_aws, height=2, width=20
+# ).grid(column=1, row=5, columnspan=3)
+# window.mainloop()
+
+#GUI
+font = ("Arial",20)
+sg.set_options(font=font)
+layout = [
+    [sg.Text('What to Install?',size=(20,1),font=font)],
+    [sg.Radio('Plguin', "RADIO1", default=True, key="plugin", font=font)],
+    [sg.Radio('Theme', "RADIO1", default=False, key="theme", font=font)],
+    [sg.InputText('',key='filename')],
+    [sg.Button('Install Plugin/Theme')],
+    [sg.Button("Update AWS Servers")],
+    [sg.Button("Cancel")],
+]
+window = sg.Window(config.app_name, layout,size=(400,400))
+
+while True:
+    event,values = window.read()
+    if event in (None,"Cancel"):
+        break
+window.close()
