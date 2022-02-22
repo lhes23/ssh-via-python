@@ -131,11 +131,11 @@ font = ("Arial",20)
 sg.set_options(font=font)
 layout = [
     [sg.Text('What to Install?',size=(20,1),font=font)],
-    [sg.Radio('Plguin', "RADIO1", default=True, key="plugin", font=font)],
-    [sg.Radio('Theme', "RADIO1", default=False, key="theme", font=font)],
+    [sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font)],
+    [sg.Radio('Theme', "RADIO1", default=False, key='themes',font=font)],
     [sg.InputText('',key='filename')],
-    [sg.Button('Install Plugin/Theme')],
-    [sg.Button("Update AWS Servers")],
+    [sg.Button('Install Plugin/Theme',key='install')],
+    [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
 ]
 window = sg.Window(config.app_name, layout,size=(400,400))
@@ -144,4 +144,11 @@ while True:
     event,values = window.read()
     if event in (None,"Cancel"):
         break
+    elif(event=='install'):
+        if(values['plugin']==True):
+            sg.Popup(f"Install Plugin")
+        elif(values['themes']==True):
+            sg.Popup(f"Install Theme")
+    elif(event=='update'):
+        sg.Popup('Update AWS')
 window.close()
