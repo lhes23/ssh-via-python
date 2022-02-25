@@ -48,10 +48,10 @@ def updateAwsServers():
 #     )
 
 
-def showMessage(item):
-    messagebox.showinfo(
-        config.app_name, f"{item} - {filename_txt.get()} has been successfully updated!"
-    )
+# def showMessage(item):
+#     messagebox.showinfo(
+#         config.app_name, f"{item} - {filename_txt.get()} has been successfully updated!"
+#     )
 
 # def startInterface():
 #     # process = input("[0]Plugin or [1]Theme?")
@@ -126,18 +126,19 @@ def update_aws():
 # window.mainloop()
 
 
+
+
+
 def installUpdate(loc, filename, item):
     # filename = input("Name of the file?")
     file = filename.split(".zip")
-    
-    sg.Popup(f"Install {item} - {filename} - {loc} \n This is the {file[0]}")
-    
-    # os.system(
-    #     f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
-    # )
-    # os.system(
-    #     f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
-    # )
+        
+    os.system(
+        f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+    )
+    os.system(
+        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
+    )
 
 def startInterface():
     # process = input("[0]Plugin or [1]Theme?")
@@ -160,10 +161,13 @@ def startInterface():
     if(values['plugin']==True):
         loc = "/wp-content/plugins"
         installUpdate(loc,values['filename'],"plugin")
-        
+        updateAwsServers()
+        sg.Popup(f"{values['filename']} has been successfully updated!")
     elif(values['themes']==True):
         loc = "/wp-content/themes"
         installUpdate(loc,values['filename'],"theme")
+        updateAwsServers()
+        sg.Popup(f"{values['filename']} has been successfully updated!")
     else:
         print("Wrong Answer!")
 
