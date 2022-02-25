@@ -53,24 +53,23 @@ def showMessage(item):
         config.app_name, f"{item} - {filename_txt.get()} has been successfully updated!"
     )
 
-
-def startInterface():
-    # process = input("[0]Plugin or [1]Theme?")
-    process = selected.get()
-    if process == 0:
-        loc = "/wp-content/plugins"
-        installUpdate(loc, "plugin")
-        updateAwsServers()
-        showMessage("Plugin")
-        filename_txt.delete(0, END)
-    elif process == 1:
-        loc = "/wp-content/themes"
-        installUpdate(loc, "theme")
-        updateAwsServers()
-        showMessage("Theme")
-        filename_txt.delete(0, END)
-    else:
-        print("Wrong Answer!")
+# def startInterface():
+#     # process = input("[0]Plugin or [1]Theme?")
+#     process = selected.get()
+#     if process == 0:
+#         loc = "/wp-content/plugins"
+#         installUpdate(loc, "plugin")
+#         updateAwsServers()
+#         showMessage("Plugin")
+#         filename_txt.delete(0, END)
+#     elif process == 1:
+#         loc = "/wp-content/themes"
+#         installUpdate(loc, "theme")
+#         updateAwsServers()
+#         showMessage("Theme")
+#         filename_txt.delete(0, END)
+#     else:
+#         print("Wrong Answer!")
 
 
 # 17-08-2021
@@ -126,6 +125,36 @@ def update_aws():
 # ).grid(column=1, row=5, columnspan=3)
 # window.mainloop()
 
+
+
+def startInterface():
+    # process = input("[0]Plugin or [1]Theme?")
+    # process = selected.get()
+    # if process == 0:
+        
+    #     installUpdate(loc, "plugin")
+    #     updateAwsServers()
+    #     showMessage("Plugin")
+    #     filename_txt.delete(0, END)
+    # elif process == 1:
+        
+    #     installUpdate(loc, "theme")
+    #     updateAwsServers()
+    #     showMessage("Theme")
+    #     filename_txt.delete(0, END)
+    # else:
+    #     print("Wrong Answer!")
+        
+    if(values['plugin']==True):
+        loc = "/wp-content/plugins"
+        sg.Popup(f"Install Plugin - {values['filename']} - {loc}")
+    elif(values['themes']==True):
+        loc = "/wp-content/themes"
+        sg.Popup(f"Install Theme - {values['filename']} - {loc}")
+    else:
+        print("Wrong Answer!")
+
+
 #GUI
 font = ("Arial",20)
 sg.set_options(font=font)
@@ -133,7 +162,7 @@ layout = [
     [sg.Text('What to Install?',size=(20,1),font=font)],
     [sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font)],
     [sg.Radio('Theme', "RADIO1", default=False, key='themes',font=font)],
-    [sg.InputText('',key='filename')],
+    [sg.InputText('',key='filename',focus=True)],
     [sg.Button('Install Plugin/Theme',key='install')],
     [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
@@ -145,10 +174,11 @@ while True:
     if event in (None,"Cancel"):
         break
     elif(event=='install'):
-        if(values['plugin']==True):
-            sg.Popup(f"Install Plugin")
-        elif(values['themes']==True):
-            sg.Popup(f"Install Theme")
+        if(values['filename'] == ''):
+            sg.Popup("Filename must not be empty")
+        else:
+            startInterface()
     elif(event=='update'):
-        sg.Popup('Update AWS')
+        updateAwsServers()
+        sg.Popup("Servers has been updated!")
 window.close()
