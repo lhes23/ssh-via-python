@@ -65,7 +65,10 @@ def next_step(filename):
 #GUI
 font = ("Arial",20)
 sg.set_options(font=font)
+
+menu_def=['&Config', ['&Open Settings','C&lose']],['&About',['&Open Info']]
 layout = [
+    [sg.Menu(menu_def)],
     [sg.Text('What to Install?',size=(20,1),font=font)],
     [sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font)],
     [sg.Radio('Theme', "RADIO1", default=False, key='themes',font=font)],
@@ -78,11 +81,13 @@ window = sg.Window(config.app_name, layout,size=(400,400))
 
 while True:
     event,values = window.read()
-    if event in (None,"Cancel"):
+    if event in (None,"Cancel", "Close"):
         break
     elif(event=='install'):
         next_step(values['filename'])
     elif(event=='update'):
         updateAwsServers()
         sg.Popup("Servers has been updated!")
+    elif(event=='Open Settings'):
+        sg.Popup("Settings")
 window.close()
