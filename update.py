@@ -35,17 +35,17 @@ def updateAwsServers():
         connectSSH(server)
 
 
-def installUpdate(loc, item):
-    # filename = input("Name of the file?")
-    filename = filename_txt.get()
-    file = filename.split(".zip")
+# def installUpdate(loc, item):
+#     # filename = input("Name of the file?")
+#     filename = filename_txt.get()
+#     file = filename.split(".zip")
     
-    os.system(
-        f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
-    )
-    os.system(
-        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
-    )
+#     os.system(
+#         f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+#     )
+#     os.system(
+#         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
+#     )
 
 
 def showMessage(item):
@@ -126,6 +126,18 @@ def update_aws():
 # window.mainloop()
 
 
+def installUpdate(loc, filename, item):
+    # filename = input("Name of the file?")
+    file = filename.split(".zip")
+    
+    sg.Popup(f"Install {item} - {filename} - {loc} \n This is the {file[0]}")
+    
+    # os.system(
+    #     f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+    # )
+    # os.system(
+    #     f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
+    # )
 
 def startInterface():
     # process = input("[0]Plugin or [1]Theme?")
@@ -147,10 +159,11 @@ def startInterface():
         
     if(values['plugin']==True):
         loc = "/wp-content/plugins"
-        sg.Popup(f"Install Plugin - {values['filename']} - {loc}")
+        installUpdate(loc,values['filename'],"plugin")
+        
     elif(values['themes']==True):
         loc = "/wp-content/themes"
-        sg.Popup(f"Install Theme - {values['filename']} - {loc}")
+        installUpdate(loc,values['filename'],"theme")
     else:
         print("Wrong Answer!")
 
@@ -176,6 +189,8 @@ while True:
     elif(event=='install'):
         if(values['filename'] == ''):
             sg.Popup("Filename must not be empty")
+        elif("zip" not in values['filename']):
+            sg.Popup("Filename must be a zip file")
         else:
             startInterface()
     elif(event=='update'):
