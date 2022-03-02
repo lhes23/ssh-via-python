@@ -3,14 +3,6 @@ import PySimpleGUI as sg
 from functions import *
 
 
-def next_step(filename,plugin,theme):
-    if(filename == ''):
-        sg.Popup("Filename must not be empty")
-    elif("zip" not in filename):
-        sg.Popup("Filename must be a zip file")
-    else:
-        startInterface(filename,plugin,theme)
-        
 #GUI
 font = ("Arial",20)
 sg.set_options(font=font)

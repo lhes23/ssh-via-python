@@ -55,3 +55,11 @@ def startInterface(filename,plugin,theme):
         print("Wrong Answer!")
 
 
+def next_step(filename,plugin,theme):
+    if(filename == ''):
+        sg.Popup("Filename must not be empty")
+    elif("zip" not in filename):
+        sg.Popup("Filename must be a zip file")
+    else:
+        startInterface(filename,plugin,theme)
+        
