@@ -1,6 +1,8 @@
 import config
 import paramiko
 import os
+import PySimpleGUI as sg
+
 
 # Main Program
 def connectSSH(host):
@@ -38,24 +40,18 @@ def installUpdate(loc, filename, item):
         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
     )
 
-def startInterface():        
-    if(values['plugin']==True):
+def startInterface(filename,plugin,theme):        
+    if(plugin==True):
         loc = "/wp-content/plugins"
-        installUpdate(loc,values['filename'],"plugin")
+        installUpdate(loc,filename,"plugin")
         updateAwsServers()
-        sg.Popup(f"{values['filename']} has been successfully updated!")
-    elif(values['themes']==True):
+        sg.Popup(f"{filename} has been successfully updated!")
+    elif(theme==True):
         loc = "/wp-content/themes"
-        installUpdate(loc,values['filename'],"theme")
+        installUpdate(loc,filename,"theme")
         updateAwsServers()
-        sg.Popup(f"{values['filename']} has been successfully updated!")
+        sg.Popup(f"{filename} has been successfully updated!")
     else:
         print("Wrong Answer!")
 
-def next_step(filename):
-    if(filename == ''):
-        sg.Popup("Filename must not be empty")
-    elif("zip" not in values['filename']):
-        sg.Popup("Filename must be a zip file")
-    else:
-        startInterface()
+
