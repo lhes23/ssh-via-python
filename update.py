@@ -2,8 +2,6 @@ import config
 import PySimpleGUI as sg
 from functions import *
 
-
-
 #GUI
 font = ("Arial",20)
 sg.set_options(font=font)
