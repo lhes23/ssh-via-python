@@ -10,9 +10,8 @@ sg.set_options(font=font)
 menu_def=['&Config', ['&Open Settings','C&lose']],['&About',['&Open Info']]
 layout = [
     [sg.Menu(menu_def)],
-    [sg.Text('What to Install?',font=("Arial",30))],
-    [sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
-    [sg.InputText('',key='filename',focus=True, do_not_clear=False, pad=(20,20))],
+    [sg.Text('What to Install?',font=font),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
+    [sg.Text('Filename:',font=font),sg.InputText('',key='filename',focus=True, do_not_clear=False, pad=(20,20))],
     [sg.Button('Install Plugin/Theme',key='install')],
     [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
