@@ -8,15 +8,16 @@ font = ("Arial",20)
 sg.set_options(font=font)
 
 menu_def=['&Config', ['&Open Settings','C&lose']],['&About',['&Open Info']]
+
 layout = [
     [sg.Menu(menu_def)],
-    [sg.Text('What to Install?',font=font),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
+    [sg.Text('What to Install:',font=font),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
     [sg.Text('Filename:',font=font),sg.InputText('',key='filename',focus=True, do_not_clear=False, pad=(20,20))],
     [sg.Button('Install Plugin/Theme',key='install')],
     [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
 ]
-window = sg.Window(config.app_name, layout,size=(400,400),element_justification='c')
+window = sg.Window(config.app_name, layout,size=(400,400))
 
 while True:
     event,values = window.read()
