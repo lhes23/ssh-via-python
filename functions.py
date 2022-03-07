@@ -29,37 +29,52 @@ def updateAwsServers():
         connectSSH(server)
 
 
-def installUpdate(loc, filename, item):
+# def installUpdate(loc, filename, item):
+#     # remove the zip from the filename
+#     file = filename.split(".zip")
+        
+#     os.system(
+#         f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+#     )
+#     os.system(
+#         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
+#     )
+    
+def installUpdate(loc, full_filename, item):
     # remove the zip from the filename
-    file = filename.split(".zip")
+    file = full_filename.split("/")
+    arr_num = len(file)
+    file_zip = file[arr_num-1]
+    file = file_zip.split(".zip")
         
     os.system(
-        f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
+        f"cd {config.local_base_dir};git pull;cp {full_filename} {config.local_base_dir}{loc}/{file_zip};cd {config.local_base_dir}{loc}/;unzip -o {file_zip};rm {file_zip}"
     )
     os.system(
         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
     )
+    return file[0]
 
-def startInterface(filename,plugin,theme):        
+def startInterface(full_filename,plugin,theme):        
     if(plugin==True):
         loc = "/wp-content/plugins"
-        installUpdate(loc,filename,"plugin")
+        filename = installUpdate(loc,full_filename,"plugin")
         updateAwsServers()
         sg.Popup(f"{filename} has been successfully updated!")
     elif(theme==True):
         loc = "/wp-content/themes"
-        installUpdate(loc,filename,"theme")
+        filename = installUpdate(loc,full_filename,"theme")
         updateAwsServers()
         sg.Popup(f"{filename} has been successfully updated!")
     else:
         print("Wrong Answer!")
 
 
-def next_step(filename,plugin,theme):
-    if(filename == ''):
+def next_step(full_filename,plugin,theme):
+    if(full_filename == ''):
         sg.Popup("Filename must not be empty")
-    elif("zip" not in filename):
+    elif("zip" not in full_filename):
         sg.Popup("Filename must be a zip file")
     else:
-        startInterface(filename,plugin,theme)
+        startInterface(full_filename,plugin,theme)
         
