@@ -47,15 +47,15 @@ def installUpdate(loc, full_filename, item):
     #actual filename with zip
     file_zip = file[arr_num-1]
     # remove the zip from the filename
-    file = file_zip.split(".zip")
+    filename = file_zip.split(".zip")
         
     os.system(
         f"cd {config.local_base_dir};git pull;cp {full_filename} {config.local_base_dir}{loc}/{file_zip};cd {config.local_base_dir}{loc}/;unzip -o {file_zip};rm {file_zip}"
     )
     os.system(
-        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
+        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {filename[0]}';git push"
     )
-    return file[0]
+    return filename[0]
 
 def startInterface(full_filename,plugin,theme):        
     if(plugin==True):
