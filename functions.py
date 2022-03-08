@@ -41,10 +41,10 @@ def updateAwsServers():
 #     )
     
 def installUpdate(loc, full_filename, item):
-    #split the full filename with location
+    # split the full filename with location
     file = full_filename.split("/")
     arr_num = len(file)
-    #actual filename with zip
+    # actual filename with zip
     file_zip = file[arr_num-1]
     # remove the zip from the filename
     filename = file_zip.split(".zip")

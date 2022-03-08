@@ -11,14 +11,14 @@ menu_def=['&Config', ['&Open Settings','C&lose']],['&About',['&Open Info']]
 
 layout = [
     [sg.Menu(menu_def)],
-    [sg.Text('What to Install:',font=font),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
+    [sg.Text('What to Install:',font=font,pad=(0,10)),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
     # [sg.Text('Filename:',font=font),sg.InputText('',key='filename',focus=True, do_not_clear=False, pad=(20,20))],
-    [sg.Text("Choose a File: "),sg.Input('',key='full_filename'),sg.FileBrowse()],
+    [sg.Text("Choose a File: ",pad=(0,20)),sg.InputText('',key='full_filename',size=(17,1),do_not_clear=False, pad=(20,20)),sg.FileBrowse()],
     [sg.Button('Install Plugin/Theme',key='install')],
     [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
 ]
-window = sg.Window(config.app_name, layout,size=(900,500),resizable=True, finalize=True)
+window = sg.Window(config.app_name, layout,size=(500,300),resizable=True, finalize=True)
 
 while True:
     event,values = window.read()
