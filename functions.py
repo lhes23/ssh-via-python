@@ -27,18 +27,6 @@ def updateAwsServers():
     servers = [config.host1, config.host2]
     for server in servers:
         connectSSH(server)
-
-
-# def installUpdate(loc, filename, item):
-#     # remove the zip from the filename
-#     file = filename.split(".zip")
-        
-#     os.system(
-#         f"cd {config.local_base_dir};git pull;cp {config.local_downloads_folder}/{filename} {config.local_base_dir}{loc}/{filename};cd {config.local_base_dir}{loc}/;unzip -o {filename};rm {filename}"
-#     )
-#     os.system(
-#         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {file[0]}';git push"
-#     )
     
 def installUpdate(loc, full_filename, item):
     # split the full filename with location
