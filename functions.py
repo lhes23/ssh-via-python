@@ -50,12 +50,12 @@ def startInterface(full_filename,plugin,theme):
         loc = "/wp-content/plugins"
         filename = installUpdate(loc,full_filename,"plugin")
         # updateAwsServers()
-        sg.Popup(f"{filename} has been successfully updated!")
+        sg.Popup(f"{filename} has been successfully updated to Staging!")
     elif(theme==True):
         loc = "/wp-content/themes"
         filename = installUpdate(loc,full_filename,"theme")
         # updateAwsServers()
-        sg.Popup(f"{filename} has been successfully updated!")
+        sg.Popup(f"{filename} has been successfully updated to Staging!")
     else:
         print("Wrong Answer!")
 
