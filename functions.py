@@ -28,7 +28,7 @@ def updateStagingServer():
 def updateAwsServers():
     servers = {config.host1:config.ssh_folder_location,config.host2:config.ssh_folder_location}
     for server, loc in servers.items():
-        connectSSH(server)
+        connectSSH(server,loc)
 
 def installUpdate(loc, full_filename, item):
     # split the full filename with location
