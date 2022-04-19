@@ -5,7 +5,7 @@ import PySimpleGUI as sg
 
 
 # Main Program
-def connectSSH(host):
+def connectSSH(host,loc):
     try:
         cert = paramiko.RSAKey.from_private_key_file(config.keyfile)
         c = paramiko.SSHClient()
@@ -14,7 +14,7 @@ def connectSSH(host):
         print("connected!!!")
         # stdin, stdout, stderr = c.exec_command(f"cd {config.ssh_folder_location};git pull origin live")
         stdin, stdout, stderr = c.exec_command(
-            f"cd {config.ssh_folder_location};git pull"
+            f"cd {loc};git pull"
         )
         print(stdout.readlines())
         c.close()
@@ -23,11 +23,11 @@ def connectSSH(host):
         print("Connection Failed!!!")
 
 def updateStagingServer():
-    connectSSH(config.host1)
+    connectSSH(config.host1,config.staging_location)
 
 def updateAwsServers():
-    servers = [config.host1, config.host2]
-    for server in servers:
+    servers = {config.host1:config.ssh_folder_location,config.host2:config.ssh_folder_location}
+    for server, loc in servers.items():
         connectSSH(server)
 
 def installUpdate(loc, full_filename, item):
