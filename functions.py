@@ -27,7 +27,7 @@ def updateAwsServers():
     servers = [config.host1, config.host2]
     for server in servers:
         connectSSH(server)
-    
+
 def installUpdate(loc, full_filename, item):
     # split the full filename with location
     file = full_filename.split("/")
