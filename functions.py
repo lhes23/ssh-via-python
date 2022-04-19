@@ -41,7 +41,7 @@ def installUpdate(loc, full_filename, item):
         f"cd {config.local_base_dir};git pull;cp {full_filename} {config.local_base_dir}{loc}/{file_zip};cd {config.local_base_dir}{loc}/;unzip -o {file_zip};rm {file_zip}"
     )
     os.system(
-        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {filename[0]}';git push"
+        f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {filename[0]}';git push origin branchUpdate"
     )
     return filename[0]
 
@@ -49,12 +49,12 @@ def startInterface(full_filename,plugin,theme):
     if(plugin==True):
         loc = "/wp-content/plugins"
         filename = installUpdate(loc,full_filename,"plugin")
-        updateAwsServers()
+        # updateAwsServers()
         sg.Popup(f"{filename} has been successfully updated!")
     elif(theme==True):
         loc = "/wp-content/themes"
         filename = installUpdate(loc,full_filename,"theme")
-        updateAwsServers()
+        # updateAwsServers()
         sg.Popup(f"{filename} has been successfully updated!")
     else:
         print("Wrong Answer!")
