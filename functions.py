@@ -22,6 +22,8 @@ def connectSSH(host):
     except:
         print("Connection Failed!!!")
 
+def updateStagingServer():
+    connectSSH(config.host1)
 
 def updateAwsServers():
     servers = [config.host1, config.host2]
@@ -50,11 +52,13 @@ def startInterface(full_filename,plugin,theme):
         loc = "/wp-content/plugins"
         filename = installUpdate(loc,full_filename,"plugin")
         # updateAwsServers()
+        updateStagingServer()
         sg.Popup(f"{filename} has been successfully updated to Staging!")
     elif(theme==True):
         loc = "/wp-content/themes"
         filename = installUpdate(loc,full_filename,"theme")
         # updateAwsServers()
+        updateStagingServer()
         sg.Popup(f"{filename} has been successfully updated to Staging!")
     else:
         print("Wrong Answer!")
