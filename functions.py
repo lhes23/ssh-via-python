@@ -40,7 +40,7 @@ def installUpdate(loc, full_filename, item):
     filename = file_zip.split(".zip")
         
     os.system(
-        f"cd {config.local_base_dir};git pull;cp {full_filename} {config.local_base_dir}{loc}/{file_zip};cd {config.local_base_dir}{loc}/;unzip -o {file_zip};rm {file_zip}"
+        f"cd {config.local_base_dir};git pull;cp {full_filename} {config.local_base_dir}{loc}/{file_zip};cd {config.local_base_dir}{loc}/;unzip -o {file_zip};rm {file_zip};rm {full_filename}"
     )
     os.system(
         f"cd {config.local_base_dir};git add -A;git commit -m 'Install/Update {item} : {filename[0]}';git push origin branchUpdate"
