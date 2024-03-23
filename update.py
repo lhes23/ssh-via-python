@@ -17,6 +17,12 @@ layout = [
     [sg.Button("Update AWS Servers",key='update')],
     [sg.Button("Cancel")],
 ]
+
+settings_layout = [
+    [sg.Text('What to Install:',font=font,pad=(0,10)),sg.Radio('Plugin', "RADIO1", default=True, key="plugin", font=font),sg.Radio('Theme', "RADIO1", default=False, key='theme',font=font)],
+    [sg.Button("Update AWS Servers",key='update')],
+    [sg.Button("Cancel")],
+]
 window = sg.Window(config.app_name, layout,size=(500,300),resizable=True, finalize=True)
 
 while True:
@@ -29,5 +35,11 @@ while True:
         updateAwsServers()
         sg.Popup("Servers has been updated!")
     elif(event=='Open Settings'):
-        sg.Popup("Settings")
+        settings = sg.Window(config.app_name, layout=settings_layout,size=(500,500),resizable=True, finalize=True)
+        while True:
+            settings_event = settings.read()
+            if settings_event in (None,"Cancel", "Close"):
+                break
+            elif settings_event == sg.WIN_CLOSED:
+                break
 window.close()
