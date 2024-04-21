@@ -29,15 +29,23 @@ class MainWindow(QWidget):
         super().__init__()
         self.resize(400, 400)
 
-        self.button1 = QPushButton('Open Project Folder')
+        self.labelImage = QLabel("Choose a File: ")
+        self.button1 = QPushButton('Choose a File:')
         self.button1.clicked.connect(self.get_folder)
         self.button2 = QPushButton('Button2')
-        self.labelImage = QLabel("Label 1")
+
+        cs1 = QRadioButton("Plugin",self)
+        cs1.move(130, 20)
+
+        cs2 = QRadioButton("Theme",self)
+        cs2.move(130, 40)
+
+        cs_group = QButtonGroup(self)
+        cs_group.addButton(cs1)
+        cs_group.addButton(cs2)
 
         formLayout = QFormLayout(self)
         formLayout.addRow(self.labelImage, self.button1)
-        # formLayout.addRow(tr("Email:"), emailLineEdit)
-        # formLayout.addRow(tr("Age:"), ageSpinBox)
         
         # self.setGeometry(500, 500, 500, 500)
         self.setWindowTitle(config.app_name)
