@@ -1,0 +1,6 @@
+pyasn1==0.5.1
+PyQt5==5.15.10
+PyQt5-Qt5==5.15.13
+PyQt5-sip==12.13.0
+PySimpleGUI==5.0.3
+rsa==4.9
