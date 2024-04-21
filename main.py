@@ -44,12 +44,21 @@ class MainWindow(QWidget):
         cs_group.addButton(cs1)
         cs_group.addButton(cs2)
 
+        def slot(object):
+            print("Key was pressed, id is:", cs_group.id(object))
+        
+        # connects the slot function and makes the argument of the band int type
+        cs_group.buttonClicked.connect(slot)
+
         formLayout = QFormLayout(self)
         formLayout.addRow(self.labelImage, self.button1)
         
         # self.setGeometry(500, 500, 500, 500)
         self.setWindowTitle(config.app_name)
         self.show()
+
+    
+
 
     def get_folder(self):
         file_name, _ = QFileDialog.getOpenFileName(
@@ -58,6 +67,7 @@ class MainWindow(QWidget):
         alert = QMessageBox()
         alert.setText(file_name)
         alert.exec()
+        print(self.cs_group.checkedButton())
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
